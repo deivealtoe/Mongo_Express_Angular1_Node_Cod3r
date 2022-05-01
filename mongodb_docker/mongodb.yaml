@@ -1,0 +1,25 @@
+services:
+  mongodb:
+    image: mongo:5.0.6
+    container_name: mongodb-ang
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+    command: [--auth]
+    environment:
+      - MONGO_INITDB_DATABASE=db_financas
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=superroot
+      # Nome do banco de dados = db_financas
+  mongo-express:
+    image: mongo-express:0.54.0
+    container_name: mongo-express-ang
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=superroot
+      - ME_CONFIG_MONGODB_SERVER=mongodb-ang
+    depends_on:
+      - mongodb
