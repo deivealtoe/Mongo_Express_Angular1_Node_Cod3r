@@ -1,0 +1,1 @@
+```docker run -d --name mongo-angular1 -p 27018:27017 -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=superSecret03 mongo```
